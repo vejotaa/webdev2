@@ -1,6 +1,6 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter Tight', sans-serif;
+  box-sizing: border-box;
 }

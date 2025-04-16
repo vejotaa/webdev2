@@ -1,72 +1,82 @@
 import React, { useState } from 'react';
 import './Pagina4.css';
 
-function Pagina3() {
-  const [tabuleiro, setTabuleiro] = useState(Array(9).fill(null)); // 9 células, inicialmente vazias
-  const [jogador, setJogador] = useState('X'); // Começa com X
-  const [vencedor, setVencedor] = useState(null);
+function Pagina4() {
+  const [numero1, setNumero1] = useState('');
+  const [numero2, setNumero2] = useState('');
+  const [resultado, setResultado] = useState(null);
+  const [operacao, setOperacao] = useState('');
 
-  const verificaVencedor = (tabuleiro) => {
-    const linhas = [
-      [0, 1, 2], // Linha 1
-      [3, 4, 5], // Linha 2
-      [6, 7, 8], // Linha 3
-      [0, 3, 6], // Coluna 1
-      [1, 4, 7], // Coluna 2
-      [2, 5, 8], // Coluna 3
-      [0, 4, 8], // Diagonal 1
-      [2, 4, 6], // Diagonal 2
-    ];
-
-    for (let linha of linhas) {
-      const [a, b, c] = linha;
-      if (tabuleiro[a] && tabuleiro[a] === tabuleiro[b] && tabuleiro[a] === tabuleiro[c]) {
-        return tabuleiro[a];
-      }
+  const handleSubmit = (operacao) => {
+    if (numero1 === '' || numero2 === '') {
+      alert('Por favor, insira dois números!');
+      return;
     }
-    return null;
-  };
 
-  const jogar = (indice) => {
-    if (tabuleiro[indice] || vencedor) return; // Se a célula estiver preenchida ou já houver um vencedor, não faz nada
+    const num1 = parseFloat(numero1);
+    const num2 = parseFloat(numero2);
 
-    const novasJogadas = tabuleiro.slice();
-    novasJogadas[indice] = jogador; // Preenche a célula com o jogador atual
-
-    setTabuleiro(novasJogadas);
-
-    const ganhador = verificaVencedor(novasJogadas);
-    if (ganhador) {
-      setVencedor(ganhador);
-    } else {
-      setJogador(jogador === 'X' ? 'O' : 'X'); // Alterna entre X e O
+    let res;
+    switch (operacao) {
+      case 'soma':
+        res = num1 + num2;
+        break;
+      case 'subtracao':
+        res = num1 - num2;
+        break;
+      case 'multiplicacao':
+        res = num1 * num2;
+        break;
+      case 'divisao':
+        if (num2 === 0) {
+          alert('Divisão por zero não permitida!');
+          return;
+        }
+        res = num1 / num2;
+        break;
+      default:
+        res = null;
+        break;
     }
-  };
 
-  const reiniciar = () => {
-    setTabuleiro(Array(9).fill(null));
-    setVencedor(null);
-    setJogador('X');
+    setResultado(res);
+    setOperacao(operacao);
   };
 
   return (
-    <div className="pagina3">
-      <h2>🎮 Jogo da Velha</h2>
-      <div className="tabuleiro">
-        {tabuleiro.map((celula, index) => (
-          <button key={index} className="celula" onClick={() => jogar(index)}>
-            {celula}
-          </button>
-        ))}
+    <div className="pagina4">
+      <h2>🧮 Calculadora de 4 Operações</h2>
+      
+      <div className="inputs">
+        <input 
+          type="number" 
+          value={numero1} 
+          onChange={(e) => setNumero1(e.target.value)} 
+          placeholder="Digite o primeiro número"
+        />
+        <input 
+          type="number" 
+          value={numero2} 
+          onChange={(e) => setNumero2(e.target.value)} 
+          placeholder="Digite o segundo número"
+        />
       </div>
-      {vencedor ? (
-        <div className="vencedor">Jogador {vencedor} venceu!</div>
-      ) : (
-        <div className="turno">Vez do jogador: {jogador}</div>
+
+      <div className="botoes">
+        <button onClick={() => handleSubmit('soma')}>Soma (+)</button>
+        <button onClick={() => handleSubmit('subtracao')}>Subtração (-)</button>
+        <button onClick={() => handleSubmit('multiplicacao')}>Multiplicação (×)</button>
+        <button onClick={() => handleSubmit('divisao')}>Divisão (÷)</button>
+      </div>
+
+      {resultado !== null && (
+      <div className="resultado">
+      <h3>Resultado da {operacao}: {resultado}</h3>
+      </div>
       )}
-      <button className="reiniciar" onClick={reiniciar}>Reiniciar Jogo</button>
+
     </div>
   );
 }
 
-export default Pagina3;
+export default Pagina4;
