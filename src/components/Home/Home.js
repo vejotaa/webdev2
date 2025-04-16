@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from './../components/Header'; // Importa o cabeçalho
+import './Home.css';
 
-function home() {
+function Home() {
   return (
-    <>
-      <Header /> {/* Renderiza o cabeçalho */}
-      <h1>Home!</h1>
-      {/* Conteúdo da página 1 aqui */}
-    </>
+    <div className="Home">
+      <h1>Bem-vindo ao portfólio!</h1>
+      <p>Escolha um projeto acima para visualizar.</p>
+    </div>
   );
 }
 
-export default home;
+export default Home;

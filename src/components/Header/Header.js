@@ -1,19 +1,17 @@
 import React from 'react';
-import './Header.css'; // Importa o CSS para estilizar o cabeçalho
+import { Link } from 'react-router-dom';
+import './Header.css';
 
 function Header() {
   return (
-    <header>
-      <h1>Meu Projeto</h1>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/pagina1">Projeto 1</a>
-        <a href="/pagina2">Projeto 2</a>
-        <a href="/pagina3">Projeto 3</a>
-        <a href="/pagina4">Projeto 4</a>
-        <a href="/pagina5">Projeto 5</a>
-      </nav>
-    </header>
+    <nav className="Header">
+      <Link to="/">Home</Link>
+      <Link to="/Pagina1">To-Do</Link>
+{/*       <Link to="/Pagina2">ClickCount</Link>
+      <Link to="/Pagina3">TTT</Link>
+      <Link to="/Pagina4">+-/*</Link>
+      <Link to="/Pagina5">CEPFiND</Link> */}
+    </nav>
   );
 }
 

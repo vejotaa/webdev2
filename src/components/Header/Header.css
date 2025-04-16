@@ -1,14 +1,18 @@
-header {
-    background-color: #f0f0f0;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-  }
-  
+.Header {
+  background-color: #282c34;
+  padding: 15px 30px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.Header a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.Header a:hover {
+  color: #61dafb;
+}
